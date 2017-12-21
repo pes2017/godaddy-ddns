@@ -13,6 +13,7 @@ ENV DOMAIN example.com
 ENV NAME www
 ENV KEY abcdef
 ENV SECRET qwerty
+ENV IP_DETECTOR_ENDPOINT https://diagnostic.opendns.com/myip
 
 RUN chmod 555 init.sh
 

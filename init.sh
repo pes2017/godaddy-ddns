@@ -16,6 +16,7 @@ domain="$DOMAIN"   # your domain
 name="$NAME"     # name of A record to update
 key="$KEY"      # key for godaddy developer API
 secret="$SECRET"   # secret for godaddy developer API
+ipDetectorEndpoint="$IP_DETECTOR_ENDPOINT" # any public ip echo service endpoint that returns JSON
 
 headers="Authorization: sso-key $key:$secret"
 
@@ -30,11 +31,11 @@ dnsIp=$(echo $result | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
 # echo "dnsIp:" $dnsIp
 
 # Get public ip address there are several websites that can do this.
-ret=$(curl -s GET "http://ipinfo.io/json")
+ret=$(curl -s GET "$ipDetectorEndpoint")
 currentIp=$(echo $ret | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
 echo "Found exist record for $NAME.$DOMAIN, detected dnsIp is $dnsIp, currentIp is $currentIp"
 
- if [ "$dnsIp" != $currentIp ];
+ if [ "$dnsIp" != "$currentIp" ];
  then
 	echo "Updating $NAME.$DOMAIN with $currentIp"
 #	echo "Ips are not equal"
