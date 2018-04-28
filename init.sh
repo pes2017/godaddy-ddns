@@ -39,7 +39,7 @@ echo "Found exist record for $NAME.$DOMAIN, detected dnsIp is $dnsIp, currentIp 
  then
 	echo "Updating $NAME.$DOMAIN with $currentIp"
 #	echo "Ips are not equal"
-	request='{"data":"'$currentIp'","ttl":3600}'
+	request='[{"data":"'$currentIp'","ttl":3600}]'
 #	echo $request
 	nresult=$(curl -i -s -X PUT \
  -H "$headers" \
