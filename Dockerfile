@@ -17,4 +17,4 @@ ENV IP_DETECTOR_ENDPOINT https://api.ipify.org/
 
 RUN chmod 555 init.sh
 
-CMD while /bin/true; do ./init.sh; /bin/sleep 3600; done
+CMD while /bin/true; do ./init.sh; /bin/sleep 300; done
